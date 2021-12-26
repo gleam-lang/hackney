@@ -9,7 +9,7 @@ Bindings to Erlang's HTTP client, `hackney`.
 ```rust
 import gleam/hackney
 import gleam/http.{Get}
-import gleam/should
+import gleeunit/should
 
 pub fn main() {
   // Prepare a HTTP request record
