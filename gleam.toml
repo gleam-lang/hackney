@@ -11,6 +11,8 @@ version = "0.1.0"
 
 [dependencies]
 gleam_stdlib = "~> 0.18"
+hackney = "~> 1.18"
+gleam_http = "~> 2.1"
 
 [dev-dependencies]
 gleeunit = "~> 0.5"
