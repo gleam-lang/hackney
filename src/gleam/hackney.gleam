@@ -1,5 +1,7 @@
 import gleam/dynamic.{Dynamic}
-import gleam/http.{Method, Request, Response}
+import gleam/http.{Method}
+import gleam/http/request.{Request}
+import gleam/http/response.{Response}
 import gleam/bit_string
 import gleam/bit_builder.{BitBuilder}
 import gleam/result
@@ -27,7 +29,7 @@ pub fn send_bits(
 ) -> Result(Response(BitString), Error) {
   try response =
     request
-    |> http.req_to_uri
+    |> request.to_uri
     |> uri.to_string
     |> ffi_send(request.method, _, request.headers, request.body)
   let headers = list.map(response.headers, normalise_header)
@@ -37,11 +39,11 @@ pub fn send_bits(
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
   try resp =
     req
-    |> http.map_req_body(bit_builder.from_string)
+    |> request.map(bit_builder.from_string)
     |> send_bits
 
   case bit_string.to_string(resp.body) {
-    Ok(body) -> Ok(http.set_resp_body(resp, body))
+    Ok(body) -> Ok(response.set_body(resp, body))
     Error(_) -> Error(InvalidUtf8Response)
   }
 }
