@@ -1,5 +1,5 @@
 name = "gleam_hackney"
-version = "0.1.0"
+version = "0.2.0"
 description = "Gleam bindings to the Hackney HTTP client"
 licences = ["Apache-2.0"]
 
