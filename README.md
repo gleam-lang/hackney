@@ -6,7 +6,7 @@
 
 Bindings to Erlang's `hackney` HTTP client.
 
-```rust
+```gleam
 import gleam/hackney
 import gleam/http.{Get}
 import gleam/http/request
