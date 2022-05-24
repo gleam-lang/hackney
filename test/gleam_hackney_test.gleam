@@ -2,9 +2,7 @@ import gleam/hackney
 import gleam/http.{Get, Head, Options}
 import gleam/http/request
 import gleam/http/response
-import gleam/list
 import gleeunit
-import gleam/io
 
 pub fn main() {
   // Run the tests

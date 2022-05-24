@@ -4,7 +4,6 @@ import gleam/http/request.{Request}
 import gleam/http/response.{Response}
 import gleam/bit_string
 import gleam/bit_builder.{BitBuilder}
-import gleam/result
 import gleam/string
 import gleam/list
 import gleam/uri
