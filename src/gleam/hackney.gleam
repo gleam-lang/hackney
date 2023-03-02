@@ -1,5 +1,4 @@
 import gleam/result
-
 import gleam/dynamic.{Dynamic}
 import gleam/http.{Method}
 import gleam/http/request.{Request}
