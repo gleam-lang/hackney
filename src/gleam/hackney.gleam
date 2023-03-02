@@ -1,3 +1,5 @@
+import gleam/result
+
 import gleam/dynamic.{Dynamic}
 import gleam/http.{Method}
 import gleam/http/request.{Request}
@@ -26,20 +28,22 @@ external fn ffi_send(
 pub fn send_bits(
   request: Request(BitBuilder),
 ) -> Result(Response(BitString), Error) {
-  try response =
+  use response <- result.then(
     request
     |> request.to_uri
     |> uri.to_string
-    |> ffi_send(request.method, _, request.headers, request.body)
+    |> ffi_send(request.method, _, request.headers, request.body),
+  )
   let headers = list.map(response.headers, normalise_header)
   Ok(Response(..response, headers: headers))
 }
 
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
-  try resp =
+  use resp <- result.then(
     req
     |> request.map(bit_builder.from_string)
-    |> send_bits
+    |> send_bits,
+  )
 
   case bit_string.to_string(resp.body) {
     Ok(body) -> Ok(response.set_body(resp, body))
