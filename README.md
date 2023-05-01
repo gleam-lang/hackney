@@ -7,6 +7,7 @@
 Bindings to Erlang's `hackney` HTTP client.
 
 ```gleam
+import gleam/result.{try}
 import gleam/hackney
 import gleam/http.{Get}
 import gleam/http/request
@@ -15,14 +16,15 @@ import gleeunit/should
 
 pub fn main() {
   // Prepare a HTTP request record
-  let request = request.new()
-    |> request.set_method(Get)
-    |> request.set_host("test-api.service.hmrc.gov.uk")
-    |> request.set_path("/hello/world")
-    |> request.prepend_header("accept", "application/vnd.hmrc.1.0+json")
+  let assert Ok(request) =
+    request.to("https://test-api.service.hmrc.gov.uk/hello/world")
 
   // Send the HTTP request to the server
-  try response = hackney.send(request)
+  use response <- try(
+    request
+    |> request.prepend_header("accept", "application/vnd.hmrc.1.0+json")
+    |> hackney.send(request)
+  )
 
   // We get a response record back
   response.status
