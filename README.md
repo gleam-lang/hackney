@@ -23,7 +23,7 @@ pub fn main() {
   use response <- try(
     request
     |> request.prepend_header("accept", "application/vnd.hmrc.1.0+json")
-    |> hackney.send(request)
+    |> hackney.send
   )
 
   // We get a response record back
