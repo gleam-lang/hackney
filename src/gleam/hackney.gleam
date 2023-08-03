@@ -15,13 +15,13 @@ pub type Error {
   Other(Dynamic)
 }
 
-external fn ffi_send(
-  Method,
-  String,
-  List(http.Header),
-  BitBuilder,
-) -> Result(Response(BitString), Error) =
-  "gleam_hackney_ffi" "send"
+@external(erlang, "gleam_hackney_ffi", "send")
+fn ffi_send(
+  a: Method,
+  b: String,
+  c: List(http.Header),
+  d: BitBuilder,
+) -> Result(Response(BitString), Error)
 
 // TODO: test
 pub fn send_bits(
