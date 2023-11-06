@@ -1,6 +1,6 @@
 name = "gleam_hackney"
 version = "1.1.0"
-gleam = ">= 0.30.0"
+gleam = ">= 0.32.0"
 
 description = "Gleam bindings to the Hackney HTTP client"
 licences = ["Apache-2.0"]
@@ -12,9 +12,9 @@ links = [
 ]
 
 [dependencies]
-gleam_stdlib = "~> 0.18"
+gleam_stdlib = "~> 0.32"
 gleam_http = "~> 3.0"
 hackney = "~> 1.18"
 
 [dev-dependencies]
-gleeunit = "~> 0.5"
+gleeunit = "~> 1.0"
