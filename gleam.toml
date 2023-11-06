@@ -1,5 +1,5 @@
 name = "gleam_hackney"
-version = "1.1.0"
+version = "1.2.0"
 gleam = ">= 0.32.0"
 
 description = "Gleam bindings to the Hackney HTTP client"
