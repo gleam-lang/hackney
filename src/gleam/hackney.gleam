@@ -1,12 +1,12 @@
-import gleam/result
+import gleam/bit_array
+import gleam/bytes_tree.{type BytesTree}
 import gleam/dynamic.{type Dynamic}
 import gleam/http.{type Method}
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response, Response}
-import gleam/bit_array
-import gleam/bytes_builder.{type BytesBuilder}
-import gleam/string
 import gleam/list
+import gleam/result
+import gleam/string
 import gleam/uri
 
 pub type Error {
@@ -20,12 +20,12 @@ fn ffi_send(
   a: Method,
   b: String,
   c: List(http.Header),
-  d: BytesBuilder,
+  d: BytesTree,
 ) -> Result(Response(BitArray), Error)
 
 // TODO: test
 pub fn send_bits(
-  request: Request(BytesBuilder),
+  request: Request(BytesTree),
 ) -> Result(Response(BitArray), Error) {
   use response <- result.then(
     request
@@ -40,7 +40,7 @@ pub fn send_bits(
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
   use resp <- result.then(
     req
-    |> request.map(bytes_builder.from_string)
+    |> request.map(bytes_tree.from_string)
     |> send_bits,
   )
 
