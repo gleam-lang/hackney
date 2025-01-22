@@ -4,7 +4,7 @@
 
 send(Method, Url, Headers, Body) ->
     Options = [{with_body, true}],
-    case hackney:request(Method, Url, Headers, Body, Options) of
+    case hackney:request(Method, Url, Headers, iolist_to_binary(Body), Options) of
         {ok, Status, ResponseHeaders, ResponseBody} -> 
             {ok, {response, Status, ResponseHeaders, ResponseBody}};
 

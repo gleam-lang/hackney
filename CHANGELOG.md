@@ -1,5 +1,10 @@
 # Changelog
 
+## Unpublished
+
+- Fixed unnecessary `Content-Type` and `Content-Length` headers being added to
+  non-POST/PUT requests with empty bodies.
+
 ## v1.3.0 - 2024-12-07
 
 - Updated for `gleam_stdlib` v0.45.0.
