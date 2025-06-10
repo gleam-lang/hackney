@@ -1,16 +1,13 @@
 -module(gleam_hackney_ffi).
 
--export([send/4]).
+-export([send/5]).
 
-send(Method, Url, Headers, Body) ->
-    Options = [{with_body, true}],
+send(Method, Url, Headers, Body, Options) ->
     case hackney:request(Method, Url, Headers, Body, Options) of
-        {ok, Status, ResponseHeaders, ResponseBody} -> 
+        {ok, Status, ResponseHeaders, ResponseBody} ->
             {ok, {response, Status, ResponseHeaders, ResponseBody}};
-
-        {ok, Status, ResponseHeaders} -> 
+        {ok, Status, ResponseHeaders} ->
             {ok, {response, Status, ResponseHeaders, <<>>}};
-
-        {error, Error} -> 
+        {error, Error} ->
             {error, {other, Error}}
     end.
