@@ -11,6 +11,7 @@ packages = [
   { name = "metrics", version = "1.0.1", build_tools = ["rebar3"], requirements = [], otp_app = "metrics", source = "hex", outer_checksum = "69B09ADDDC4F74A40716AE54D140F93BEB0FB8978D8636EADED0C31B6F099F16" },
   { name = "mimerl", version = "1.3.0", build_tools = ["rebar3"], requirements = [], otp_app = "mimerl", source = "hex", outer_checksum = "A1E15A50D1887217DE95F0B9B0793E32853F7C258A5CD227650889B38839FE9D" },
   { name = "parse_trans", version = "3.4.1", build_tools = ["rebar3"], requirements = [], otp_app = "parse_trans", source = "hex", outer_checksum = "620A406CE75DADA827B82E453C19CF06776BE266F5A67CFF34E1EF2CBB60E49A" },
+  { name = "qcheck_gleeunit_utils", version = "0.1.0", build_tools = ["gleam"], requirements = ["gleam_stdlib", "gleeunit"], otp_app = "qcheck_gleeunit_utils", source = "hex", outer_checksum = "0C262D4636DEFC0BE8FA525DC193C2CC1E9D12A3BC26F9CA1F6B7FBB0E20C7B5" },
   { name = "ssl_verify_fun", version = "1.1.7", build_tools = ["mix", "rebar3", "make"], requirements = [], otp_app = "ssl_verify_fun", source = "hex", outer_checksum = "FE4C190E8F37401D30167C8C405EDA19469F34577987C76DDE613E838BBC67F8" },
   { name = "unicode_util_compat", version = "0.7.0", build_tools = ["rebar3"], requirements = [], otp_app = "unicode_util_compat", source = "hex", outer_checksum = "25EEE6D67DF61960CF6A794239566599B09E17E668D3700247BC498638152521" },
 ]
@@ -20,3 +21,4 @@ gleam_http = { version = ">= 3.0.0 and < 5.0.0" }
 gleam_stdlib = { version = ">= 0.45.0 and < 2.0.0" }
 gleeunit = { version = ">= 1.0.0 and < 2.0.0" }
 hackney = { version = ">= 1.18.0 and < 2.0.0" }
+qcheck_gleeunit_utils = { version = ">= 0.1.0 and < 1.0.0" }

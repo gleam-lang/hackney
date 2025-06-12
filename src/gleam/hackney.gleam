@@ -1,9 +1,7 @@
 import gleam/bit_array
 import gleam/bytes_tree.{type BytesTree}
 import gleam/dynamic.{type Dynamic}
-import gleam/hackney/hackney_request.{
-  type HackneyRequest, type HackneyRequestOption, HackneyRequest,
-}
+import gleam/hackney/option.{type HackneyRequestOption}
 import gleam/http.{type Method}
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response, Response}
@@ -35,32 +33,21 @@ pub fn send_bits(
     request
     |> request.to_uri
     |> uri.to_string
-    |> ffi_send(
-      request.method,
-      _,
-      request.headers,
-      request.body,
-      hackney_request.default_options(),
-    ),
+    |> ffi_send(request.method, _, request.headers, request.body, option.new()),
   )
   let headers = list.map(response.headers, normalise_header)
   Ok(Response(..response, headers: headers))
 }
 
 pub fn send_bits_with_options(
-  request: HackneyRequest(BytesTree),
+  request: Request(BytesTree),
+  options: List(HackneyRequestOption),
 ) -> Result(Response(BitArray), Error) {
   use response <- result.then(
-    request.request
+    request
     |> request.to_uri
     |> uri.to_string
-    |> ffi_send(
-      request.request.method,
-      _,
-      request.request.headers,
-      request.request.body,
-      request.options,
-    ),
+    |> ffi_send(request.method, _, request.headers, request.body, options),
   )
   let headers = list.map(response.headers, normalise_header)
   Ok(Response(..response, headers: headers))
@@ -80,12 +67,12 @@ pub fn send(req: Request(String)) -> Result(Response(String), Error) {
 }
 
 pub fn send_with_options(
-  req: HackneyRequest(String),
+  req: Request(String),
+  options: List(HackneyRequestOption),
 ) -> Result(Response(String), Error) {
-  let bytes = request.map(req.request, bytes_tree.from_string)
-  let req = HackneyRequest(bytes, req.options)
+  let bytes = request.map(req, bytes_tree.from_string)
 
-  use resp <- result.then(send_bits_with_options(req))
+  use resp <- result.then(send_bits_with_options(bytes, options))
 
   case bit_array.to_string(resp.body) {
     Ok(body) -> Ok(response.set_body(resp, body))

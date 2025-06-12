@@ -15,6 +15,7 @@ links = [
 gleam_stdlib = ">= 0.45.0 and < 2.0.0"
 gleam_http = ">= 3.0.0 and < 5.0.0"
 hackney = ">= 1.18.0 and < 2.0.0"
+qcheck_gleeunit_utils = ">= 0.1.0 and < 1.0.0"
 
 [dev-dependencies]
 gleeunit = ">= 1.0.0 and < 2.0.0"
