@@ -1,7 +1,7 @@
 import gleam/bit_array
 import gleam/bytes_tree.{type BytesTree}
 import gleam/dynamic.{type Dynamic}
-import gleam/hackney/option.{type HackneyRequestOption}
+import gleam/hackney/option.{type HackneyOption}
 import gleam/http.{type Method}
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response, Response}
@@ -22,7 +22,7 @@ fn ffi_send(
   b: String,
   c: List(http.Header),
   d: BytesTree,
-  e: List(HackneyRequestOption),
+  e: List(HackneyOption),
 ) -> Result(Response(BitArray), Error)
 
 // TODO: test
@@ -41,7 +41,7 @@ pub fn send_bits(
 
 pub fn send_bits_with_options(
   request: Request(BytesTree),
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
 ) -> Result(Response(BitArray), Error) {
   use response <- result.then(
     request
@@ -68,7 +68,7 @@ pub fn send(req: Request(String)) -> Result(Response(String), Error) {
 
 pub fn send_with_options(
   req: Request(String),
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
 ) -> Result(Response(String), Error) {
   let bytes = request.map(req, bytes_tree.from_string)
 

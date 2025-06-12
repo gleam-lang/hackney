@@ -1,6 +1,6 @@
 import gleam/list
 
-pub opaque type HackneyRequestOption {
+pub opaque type HackneyOption {
   WithBody(Bool)
   MaxBody(Int)
   StreamTo(Int)
@@ -22,7 +22,7 @@ pub opaque type HackneyRequestOption {
 }
 
 // defaults taken from the hackney repo
-pub fn new() -> List(HackneyRequestOption) {
+pub fn new() -> List(HackneyOption) {
   [
     WithBody(True),
     FollowRedirect(False),
@@ -35,9 +35,9 @@ pub fn new() -> List(HackneyRequestOption) {
 }
 
 pub fn set_with_body(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Bool,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -50,9 +50,9 @@ pub fn set_with_body(
 }
 
 pub fn set_max_body(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -65,9 +65,9 @@ pub fn set_max_body(
 }
 
 pub fn set_stream_to(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -80,9 +80,9 @@ pub fn set_stream_to(
 }
 
 pub fn set_follow_redirect(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Bool,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -95,9 +95,9 @@ pub fn set_follow_redirect(
 }
 
 pub fn set_max_redirect(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -110,9 +110,9 @@ pub fn set_max_redirect(
 }
 
 pub fn set_force_redirect(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Bool,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -125,10 +125,10 @@ pub fn set_force_redirect(
 }
 
 pub fn set_basic_auth(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   username: String,
   password: String,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -141,9 +141,9 @@ pub fn set_basic_auth(
 }
 
 pub fn set_insecure(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Bool,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -156,9 +156,9 @@ pub fn set_insecure(
 }
 
 pub fn set_checkout_timeout(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -171,9 +171,9 @@ pub fn set_checkout_timeout(
 }
 
 pub fn set_connect_timeout(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
@@ -186,9 +186,9 @@ pub fn set_connect_timeout(
 }
 
 pub fn set_recv_timeout(
-  options: List(HackneyRequestOption),
+  options: List(HackneyOption),
   value: Int,
-) -> List(HackneyRequestOption) {
+) -> List(HackneyOption) {
   let new_options =
     list.filter(options, fn(x) {
       case x {
