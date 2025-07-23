@@ -21,27 +21,36 @@ fn ffi_send(
   b: String,
   c: List(http.Header),
   d: BytesTree,
+  e: Int,
 ) -> Result(Response(BitArray), Error)
 
 // TODO: test
 pub fn send_bits(
   request: Request(BytesTree),
+  timeout: Int,
 ) -> Result(Response(BitArray), Error) {
   use response <- result.then(
     request
     |> request.to_uri
     |> uri.to_string
-    |> ffi_send(request.method, _, request.headers, request.body),
+    |> ffi_send(request.method, _, request.headers, request.body, timeout),
   )
   let headers = list.map(response.headers, normalise_header)
   Ok(Response(..response, headers: headers))
 }
 
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
+  send_with_timeout(req, 8000)
+}
+
+pub fn send_with_timeout(
+  req: Request(String),
+  timeout: Int,
+) -> Result(Response(String), Error) {
   use resp <- result.then(
     req
     |> request.map(bytes_tree.from_string)
-    |> send_bits,
+    |> send_bits(timeout),
   )
 
   case bit_array.to_string(resp.body) {
