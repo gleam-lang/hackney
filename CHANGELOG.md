@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.2 - 2025-09-03
+
+- Updated for latest `gleam_stdlib`.
+
 ## v1.3.1 - 2025-02-06
 
 - Relaxed the `gleam_http` constraint to permit v4.
