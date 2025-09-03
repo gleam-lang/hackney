@@ -27,7 +27,7 @@ fn ffi_send(
 pub fn send_bits(
   request: Request(BytesTree),
 ) -> Result(Response(BitArray), Error) {
-  use response <- result.then(
+  use response <- result.try(
     request
     |> request.to_uri
     |> uri.to_string
@@ -38,7 +38,7 @@ pub fn send_bits(
 }
 
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
-  use resp <- result.then(
+  use resp <- result.try(
     req
     |> request.map(bytes_tree.from_string)
     |> send_bits,
