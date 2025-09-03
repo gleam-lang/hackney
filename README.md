@@ -15,7 +15,6 @@ gleam add gleam_hackney@1
 ```gleam
 import gleam/result
 import gleam/hackney
-import gleam/http.{Get}
 import gleam/http/request
 import gleam/http/response
 import gleeunit/should
