@@ -1,12 +1,19 @@
 # Hackney
 
-<a href="https://github.com/gleam-lang/hackney/releases"><img src="https://img.shields.io/github/release/gleam-lang/hackney" alt="GitHub release"></a>
-<a href="https://discord.gg/Fm8Pwmy"><img src="https://img.shields.io/discord/768594524158427167?color=blue" alt="Discord chat"></a>
+[![Package Version](https://img.shields.io/hexpm/v/gleam_hackney)](https://hex.pm/packages/gleam_hackney)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/gleam_hackney/)
 
 Bindings to Erlang's `hackney` HTTP client.
 
+Most the time [`gleam_httpc`](https://github.com/gleam-lang/httpc) is a better
+choice as it uses the built-in Erlang HTTP client, but this package may be
+useful in some specific situations.
+
+```shell
+gleam add gleam_hackney@1
+```
 ```gleam
-import gleam/result.{try}
+import gleam/result
 import gleam/hackney
 import gleam/http.{Get}
 import gleam/http/request
@@ -19,29 +26,19 @@ pub fn main() {
     request.to("https://test-api.service.hmrc.gov.uk/hello/world")
 
   // Send the HTTP request to the server
-  use response <- try(
+  use response <- result.try(
     request
     |> request.prepend_header("accept", "application/vnd.hmrc.1.0+json")
     |> hackney.send
   )
 
   // We get a response record back
-  response.status
-  |> should.equal(200)
+  assert response.status == 200
 
-  response
-  |> response.get_header("content-type")
-  |> should.equal(Ok("application/json"))
+  assert response.get_header(response, "content-type")
+    == Ok("application/json")
 
-  response.body
-  |> should.equal("{\"message\":\"Hello World\"}")
-
-  Ok(response)
+  assert response.body
+    == "{\"message\":\"Hello World\"}")
 }
-```
-
-## Installation
-
-```shell
-gleam add gleam_hackney
 ```
