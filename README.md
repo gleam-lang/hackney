@@ -10,14 +10,13 @@ choice as it uses the built-in Erlang HTTP client, but this package may be
 useful in some specific situations.
 
 ```shell
-gleam add gleam_hackney@1
+gleam add gleam_hackney@1 gleam_http
 ```
 ```gleam
 import gleam/result
 import gleam/hackney
 import gleam/http/request
 import gleam/http/response
-import gleeunit/should
 
 pub fn main() {
   // Prepare a HTTP request record
@@ -38,6 +37,8 @@ pub fn main() {
     == Ok("application/json")
 
   assert response.body
-    == "{\"message\":\"Hello World\"}")
+    == "{\"message\":\"Hello World\"}"
+
+  Ok(response)
 }
 ```
