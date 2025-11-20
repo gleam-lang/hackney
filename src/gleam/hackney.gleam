@@ -15,26 +15,39 @@ pub type Error {
   Other(Dynamic)
 }
 
+pub type Option {
+  WithBody(Bool)
+  ConnectTimeout(Int)
+  RecvTimeout(Int)
+}
+
 @external(erlang, "gleam_hackney_ffi", "send")
 fn ffi_send(
   a: Method,
   b: String,
   c: List(http.Header),
   d: BytesTree,
+  e: List(Option),
 ) -> Result(Response(BitArray), Error)
+
+pub fn dispatch_bits(request, options) {
+  use response <- result.try(
+    request
+    |> request.to_uri
+    |> uri.to_string
+    |> ffi_send(request.method, _, request.headers, request.body, options),
+  )
+  let headers = list.map(response.headers, normalise_header)
+  Ok(Response(..response, headers: headers))
+}
 
 // TODO: test
 pub fn send_bits(
   request: Request(BytesTree),
 ) -> Result(Response(BitArray), Error) {
-  use response <- result.try(
-    request
-    |> request.to_uri
-    |> uri.to_string
-    |> ffi_send(request.method, _, request.headers, request.body),
-  )
-  let headers = list.map(response.headers, normalise_header)
-  Ok(Response(..response, headers: headers))
+  dispatch_bits(request, [
+    WithBody(True),
+  ])
 }
 
 pub fn send(req: Request(String)) -> Result(Response(String), Error) {
