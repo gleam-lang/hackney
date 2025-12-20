@@ -1,7 +1,7 @@
 import gleam/bit_array
 import gleam/bytes_tree.{type BytesTree}
 import gleam/dynamic.{type Dynamic}
-import gleam/http.{type Method}
+import gleam/http
 import gleam/http/request.{type Request}
 import gleam/http/response.{type Response, Response}
 import gleam/list
@@ -17,7 +17,7 @@ pub type Error {
 
 @external(erlang, "gleam_hackney_ffi", "send")
 fn ffi_send(
-  a: Method,
+  method: String,
   b: String,
   c: List(http.Header),
   d: BytesTree,
@@ -27,11 +27,12 @@ fn ffi_send(
 pub fn send_bits(
   request: Request(BytesTree),
 ) -> Result(Response(BitArray), Error) {
+  let method = http.method_to_string(request.method)
   use response <- result.try(
     request
     |> request.to_uri
     |> uri.to_string
-    |> ffi_send(request.method, _, request.headers, request.body),
+    |> ffi_send(method, _, request.headers, request.body),
   )
   let headers = list.map(response.headers, normalise_header)
   Ok(Response(..response, headers: headers))

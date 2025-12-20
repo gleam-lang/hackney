@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.3 - 2025-12-20
+
+- Fixed a bug where `Other` HTTP methods would fail to send.
+
 ## v1.3.2 - 2025-09-03
 
 - Updated for latest `gleam_stdlib`.

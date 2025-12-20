@@ -23,6 +23,20 @@ pub fn request_test() {
   let assert "{\"message\":\"Hello World\"}" = resp.body
 }
 
+pub fn other_method_request_test() {
+  let req =
+    request.new()
+    |> request.set_method(http.Other("GET"))
+    |> request.set_host("test-api.service.hmrc.gov.uk")
+    |> request.set_path("/hello/world")
+    |> request.prepend_header("accept", "application/vnd.hmrc.1.0+json")
+
+  let assert Ok(resp) = hackney.send(req)
+  let assert 200 = resp.status
+  let assert Ok("application/json") = response.get_header(resp, "content-type")
+  let assert "{\"message\":\"Hello World\"}" = resp.body
+}
+
 pub fn get_request_discards_body_test() {
   let req =
     request.new()
