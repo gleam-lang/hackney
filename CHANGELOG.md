@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Updated to use hackney 4.x
+
 ## v1.3.3 - 2025-12-20
 
 - Fixed a bug where `Other` HTTP methods would fail to send.
