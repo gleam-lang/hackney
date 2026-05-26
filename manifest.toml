@@ -8,9 +8,9 @@
 
 packages = [
   { name = "certifi", version = "2.16.0", build_tools = ["rebar3"], requirements = [], otp_app = "certifi", source = "hex", outer_checksum = "8A64F6669D85E9CC0E5086FCF29A5B13DE57A13EFA23D3582874B9A19303F184" },
-  { name = "gleam_http", version = "4.0.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "gleam_http", source = "hex", outer_checksum = "0A62451FC85B98062E0907659D92E6A89F5F3C0FBE4AB8046C99936BF6F91DBC" },
-  { name = "gleam_stdlib", version = "0.54.0", build_tools = ["gleam"], requirements = [], otp_app = "gleam_stdlib", source = "hex", outer_checksum = "723BA61A2BAE8D67406E59DD88CEA1B3C3F266FC8D70F64BE9FEC81B4505B927" },
-  { name = "gleeunit", version = "1.3.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "gleeunit", source = "hex", outer_checksum = "0E6C83834BA65EDCAAF4FE4FB94AC697D9262D83E6F58A750D63C9F6C8A9D9FF" },
+  { name = "gleam_http", version = "4.3.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "gleam_http", source = "hex", outer_checksum = "82EA6A717C842456188C190AFB372665EA56CE13D8559BF3B1DD9E40F619EE0C" },
+  { name = "gleam_stdlib", version = "1.0.2", build_tools = ["gleam"], requirements = [], otp_app = "gleam_stdlib", source = "hex", outer_checksum = "0C5506589DF4C63DF5D6FFBB834562D6865C6C2AEE0019D7B37886BD6D128141" },
+  { name = "gleeunit", version = "1.10.0", build_tools = ["gleam"], requirements = ["gleam_stdlib"], otp_app = "gleeunit", source = "hex", outer_checksum = "254B697FE72EEAD7BF82E941723918E421317813AC49923EE76A18C788C61E72" },
   { name = "h2", version = "0.6.0", build_tools = ["rebar3"], requirements = [], otp_app = "h2", source = "hex", outer_checksum = "5AC1C05675EFECACBB8014D3923B3A19B1F6C4672F2C103AC24D563169338888" },
   { name = "hackney", version = "4.0.2", build_tools = ["rebar3"], requirements = ["certifi", "h2", "idna", "mimerl", "parse_trans", "quic", "ssl_verify_fun"], otp_app = "hackney", source = "hex", outer_checksum = "83774852EB40F70023FE88B625907148E8D37313C55512F5AB400513FDE81D4D" },
   { name = "idna", version = "7.1.0", build_tools = ["rebar3"], requirements = [], otp_app = "idna", source = "hex", outer_checksum = "6AE959A025BF36DF61A8CAB8508D9654891B5426A84C44D82DEAFFD6DDF8C71F" },
