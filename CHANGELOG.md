@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.4.0 - 2026-05-26
 
 - Updated to use hackney 4.x
 
